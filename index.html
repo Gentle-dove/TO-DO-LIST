@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style type="text/css">
+        body{
+            font-family: 'Times New Roman', Times, serif;
+            padding: 0;
+            margin: 0;
+            color: blueviolet;
+            box-sizing: border-box;
+            background: linear-gradient(135deg, #4203a9, #90bafc);
+        }
+
+        #container{
+            width: 100%;
+            max-width: 600px;
+            margin: 2rem auto;
+            padding: 30px;
+            background: rgba(255, 255, 255, 0.3);
+            border-radius: 20px;
+            text-align: center;
+            
+        }
+        
+        #container h1{
+            font-size: 60px;
+            margin-bottom: 20px;
+            color: #232946;
+        }
+
+        #input-todo{
+            width: 80%;
+            padding: 10px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            margin-bottom: 20px;
+            font-size: 18px;
+        }
+
+        #addtodo{
+            padding: 10px 20px;
+            border-radius: 5px;
+            background-color: #232946;
+            color: white;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        #addtodo:hover{
+            background-color: #b8c1ec;
+            color: #464cc6;
+            transform: translateY(-5px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+            font-weight: italic;
+        }
+
+        #addtodo:active{
+            transform: translateY(0);
+            box-shadow: none;
+        }
+
+        #addtodo:focus{
+            outline: none;
+            box-shadow: 0 0 5px 2px rgba(64, 224, 208, 0.6);
+        }
+
+        #ToDo-List li {
+    background: white;
+    padding: 10px;
+    margin: 10px auto;
+    list-style: none;
+    border-radius: 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.delete-todo-btn {
+    background-color: crimson;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 40px;
+    cursor: pointer;
+}
+
+
+    </style>
+</head>
+<body id="body">
+    <div id="container">
+        <h1>TO-DO LIST</h1>
+        <input type="text" placeholder="Enter your To-Do" id="input-todo">
+        <button id="addtodo">ADD</button>
+        <ul id="ToDo-List"></ul>
+    </div>
+   
+    <script>
+    
+        const todoList = document.getElementById('ToDo-List');
+const newTodoInput = document.getElementById('input-todo');
+const addTodoBtn = document.getElementById('addtodo');
+
+addTodoBtn.addEventListener('click', () => {
+    const newTodoText = newTodoInput.value.trim(); // Trim whitespace
+
+    if (newTodoText !== "") {
+        const newTodoItem = document.createElement('li');
+        newTodoItem.innerText = newTodoText;
+
+        const deleteTodoBtn = document.createElement('button');
+        deleteTodoBtn.innerText = "Delete";
+        deleteTodoBtn.classList.add("delete-todo-btn");
+
+        deleteTodoBtn.addEventListener('click', () => {
+            todoList.removeChild(newTodoItem);
+        });
+
+        newTodoItem.appendChild(deleteTodoBtn);
+        todoList.appendChild(newTodoItem);
+
+        newTodoInput.value = "";
+    }
+});
+
+    </script>
+        
+</body>
+</html>
